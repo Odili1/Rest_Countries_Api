@@ -132,6 +132,10 @@ main{
     position: relative;
 }
 
+.countries .disabled{
+    display: none;
+}
+
 .countries .country_box .country_box_details{
     padding-left: 2em;
     margin-bottom: 2em;
