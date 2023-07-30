@@ -13,7 +13,7 @@ function displayData(data){
             <h1 class="name">${name}</h1>
             <ul>
                 <li class="population"><span>Population:</span> ${population}</li>
-                <li class="region ${region}"><span>Region:</span> ${region}</li>
+                <li class="region"><span>Region:</span> ${region}</li>
                 <li class="capital"><span>Capital:</span> ${capital}</li>
             </ul>
         </div>
@@ -40,25 +40,25 @@ function SearchData(){
 
 
 // Filter Function
-// function filterData(data){
-    // const country_box = document.querySelector('.country_box');
-    // const filterBy = document.querySelector('#continent');
-    // const options = filterBy.children
-    // console.log(options[2].value);
-    // filterBy.children.addEventListener('click', (e)=>{
-    //     console.log(e.target.children);
-    // })
-    // for (let i of options){
+function filterData(e){
+    if (e.target.value === filterBy.value === '' ? 0 : filterBy.value){
+        const region = document.querySelectorAll('.region');
+        // console.log(region[7].className);
+        // const metaData = region[7].parentElement.children;
+        // for (let i of metaData){
+        //     console.log({[`${i.className}`]: i.textContent.split(' ').slice(1).join(' ')});
+        // }
+        for (let i of region){
+            i.parentElement.parentElement.parentElement.classList.remove('disabled');
 
-    // }
-
-    // filterBy.childNodes.addEventListener('click', (e) => {
-    //     console.log(e.target[2].value);
-    // })
-    // data.filter(({region})=> region != )
-    // const country_box = document.querySelectorAll('.region');
-    // console.log(country_box[0].parentElement.parentElement.parentElement);
-// }
+            // Filter out unmatched selection
+            if (i.textContent.split(' ')[1].toLowerCase() !== e.target.value){
+                i.parentElement.parentElement.parentElement.classList.add('disabled')
+            }
+            
+        }
+    }
+}
 
 
 
@@ -66,12 +66,14 @@ function SearchData(){
 // Display Countries
 displayData(jsonData);
 
+// Filter By Continent
+const filterBy = document.querySelector('#continent');
+filterBy.addEventListener('click', filterData)
+// filterData()
+
 // Search For Countries
 const search = document.querySelector('.search');
 search.addEventListener('keyup', SearchData)
-
-// filterData(jsonData)
-
 
 
 
