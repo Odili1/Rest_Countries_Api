@@ -41,21 +41,15 @@ function SearchData(){
 
 // Filter Function
 function filterData(e){
-    if (e.target.value === filterBy.value === '' ? 0 : filterBy.value){
+    if (e.target.value === (filterBy.value === '' ? 0 : filterBy.value)){
         const region = document.querySelectorAll('.region');
-        // console.log(region[7].className);
-        // const metaData = region[7].parentElement.children;
-        // for (let i of metaData){
-        //     console.log({[`${i.className}`]: i.textContent.split(' ').slice(1).join(' ')});
-        // }
         for (let i of region){
             i.parentElement.parentElement.parentElement.classList.remove('disabled');
 
             // Filter out unmatched selection
             if (i.textContent.split(' ')[1].toLowerCase() !== e.target.value){
-                i.parentElement.parentElement.parentElement.classList.add('disabled')
+                i.parentElement.parentElement.parentElement.classList.add('disabled');
             }
-            
         }
     }
 }
